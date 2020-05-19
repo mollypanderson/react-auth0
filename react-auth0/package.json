@@ -4,15 +4,27 @@
   "private": true,
   "homepage": "http://mollypanderson.github.io/react-auth0",
   "dependencies": {
+    "auth0-js": "^9.8.0",
+    "auth0-lock": "^11.10.0",
+    "express": "^4.16.3",
+    "express-jwt": "^5.3.1",
+    "express-jwt-authz": "^1.0.0",
+    "jwks-rsa": "^1.3.0",
+    "npm-run-all": "^4.1.3",
     "react": "^16.13.1",
     "react-dom": "^16.13.1",
+    "react-router-dom": "^4.3.1",
     "react-scripts": "0.9.5"
   },
-  "devDependencies": {},
+  "devDependencies": {
+    "gh-pages": "^2.2.0"
+  },
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test --env=jsdom",
-    "eject": "react-scripts eject"
+    "eject": "react-scripts eject",
+    "predeploy": "npm run build",
+    "deploy": "gh-pages -d build"
   }
 }
