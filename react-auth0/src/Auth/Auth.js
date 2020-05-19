@@ -6,7 +6,8 @@ export default class Auth {
         this.auth0 = new auth0.WebAuth({
             domain: 'mpa-dev.auth0.com',
             clientID: 'ZKMkLQwP8RHi85wCSBQfqWfCUWq96DtT',
-            redirectUri: 'http://localhost:3000/callback',
+            //redirectUri: 'http://localhost:3000/callback',
+            redirectUri: 'https://mollypanderson.github.io/react-auth0/callback',
             responseType: "token id_token",  // token: access token to make api calls, id_token: jwt token to authenticate user
             scope: "openid profile email" // openid: we'll get back standard openid claims like issuer, audience, expiration, etc, profile: get back user data from whatever
                                     // site, like from Google it would be picture, name, etc
@@ -50,5 +51,32 @@ export default class Auth {
         return new Date().getTime() < expiresAt;    // returns false if token has expired. this is for our own convenience - the api really
                                                     // controls if you're truly validated or not and will expire you when the time comes
     }
+
+    logout = () => {
+        localStorage.removeItem("access_token");
+        localStorage.removeItem("id_token");
+        localStorage.removeItem("expires_at");
+        this.auth0.logout({
+            clientID: 'ZKMkLQwP8RHi85wCSBQfqWfCUWq96DtT',
+            //returnTo: "http://localhost:3000"
+            returnTo: "https://mollypanderson.github.io/react-auth0"
+        });
+    };
+
+    getAccessToken = () => {
+        const accessToken = localStorage.getItem("access_token");
+        if (!accessToken) {
+            throw new Error("No access token found.");
+        }
+        return accessToken;
+    };
+
+    getProfile = cb => {
+        if (this.userProfile) return cb(this.userProfile);
+        this.auth0.client.userInfo(this.getAccessToken(), (err, profile) => {
+            if (profile) this.userProfile = profile;
+            cb(profile, err);
+        });
+    };
 
 }
