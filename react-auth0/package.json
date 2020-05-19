@@ -2,6 +2,7 @@
   "name": "react-auth0",
   "version": "0.1.0",
   "private": true,
+  "homepage": "http://mollypanderson.github.io/react-auth0",
   "dependencies": {
     "react": "^16.13.1",
     "react-dom": "^16.13.1",
