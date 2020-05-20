@@ -7,7 +7,7 @@ export default class Auth {
             domain: 'mpa-dev.auth0.com',
             clientID: 'ZKMkLQwP8RHi85wCSBQfqWfCUWq96DtT',
             //redirectUri: 'http://localhost:3000/callback',
-            redirectUri: 'https://mollypanderson.github.io/react-auth0/callback',
+            redirectUri: process.env.PUBLIC_URL + '/callback',
             responseType: "token id_token",  // token: access token to make api calls, id_token: jwt token to authenticate user
             scope: "openid profile email" // openid: we'll get back standard openid claims like issuer, audience, expiration, etc, profile: get back user data from whatever
                                     // site, like from Google it would be picture, name, etc
@@ -24,10 +24,10 @@ export default class Auth {
             if (authResult && authResult.accessToken && authResult.idToken) {
                 // create a session and store data
                 this.setSession(authResult);
-                this.history.push("/react-auth0"); // tell react router you want to redirect to a new url (homepage)
+                this.history.push("/"); // tell react router you want to redirect to a new url (homepage)
 
             } else if (err) {
-                this.history.push("/react-auth0");
+                this.history.push("/");
                 alert(`Error: ${err.error}. Check the console for further details.`);
                 console.log(err);
             }

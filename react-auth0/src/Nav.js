@@ -8,7 +8,7 @@ class Nav extends Component {
             <nav>
                 <ul>
                     <li>
-                        <Link to="/react-auth0">Home</Link>
+                        <Link to="/">Home</Link>
                     </li>
                     <li>
                         <Link to="/profile">Profile</Link>
