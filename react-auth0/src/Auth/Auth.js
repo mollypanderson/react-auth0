@@ -24,10 +24,10 @@ export default class Auth {
             if (authResult && authResult.accessToken && authResult.idToken) {
                 // create a session and store data
                 this.setSession(authResult);
-                this.history.push("/"); // tell react router you want to redirect to a new url (homepage)
+                this.history.push("/react-auth0"); // tell react router you want to redirect to a new url (homepage)
 
             } else if (err) {
-                this.history.push("/");
+                this.history.push("/react-auth0");
                 alert(`Error: ${err.error}. Check the console for further details.`);
                 console.log(err);
             }

@@ -19,20 +19,20 @@ class App extends Component {
                 <Nav auth={this.auth}/>
                 <div className="body">
                     <Route
-                        path="/"
+                        path="/react-auth0"
                         exact
                         render={props => <Home auth={this.auth} {...props} />}
                     />
                     <Route
-                        path="/callback"
+                        path="/react-auth0/callback"
                         render={props => <Callback auth={this.auth} {...props} />}
                     />
-                    <Route path="/profile"
+                    <Route path="/react-auth0/profile"
                            render={props =>
                                this.auth.isAuthenticated() ? (
                                    <Profile auth={this.auth} {...props} />
                                ) : (
-                                   <Redirect to="/" />
+                                   <Redirect to="/react-auth0" />
                                )
                            }
                     />
